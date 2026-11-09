@@ -1,0 +1,20 @@
+
+// Scorecard proposal checks (temporary copy of the harness).
+const all = (v) => Array(20).fill(v);
+const sub = (email, checks) => as('anon', () => q(`select * from breadmaker.submit_scorecard($1, 'T', '', '{}'::jsonb, $2::boolean[], true)`, [email, checks]));
+await expect('sc: perfect score is operating', async () => sub('p@example.com', all(true)), (r) => rows(r)[0].yes_count === 20 && rows(r)[0].band === 'operating');
+await expect('sc: zero is not-started, week 1', async () => sub('z@example.com', all(false)), (r) => rows(r)[0].yes_count === 0 && rows(r)[0].band === 'not-started' && rows(r)[0].weakest_week === 1);
+await expect('sc: bands at 7/8 and 14/15 and 18/19', async () => {
+  const mk = (n) => Array.from({ length: 20 }, (_, i) => i < n);
+  const out = [];
+  for (const n of [7, 8, 14, 15, 18, 19]) out.push(rows(await sub(`b${n}@example.com`, mk(n)))[0].band);
+  return { rows: [{ out }] };
+}, (r) => JSON.stringify(rows(r)[0].out) === JSON.stringify(['not-started', 'building', 'building', 'almost', 'almost', 'operating']));
+await expect('sc: a second attempt is numbered 2', async () => sub('z@example.com', all(true)), (r) => rows(r)[0].attempt === 2);
+await expect('sc: bad email refused', async () => sub('nope', all(true)), (r, e) => !!e);
+await expect('sc: nineteen answers refused', async () => sub('n@example.com', Array(19).fill(true)), (r, e) => !!e);
+await expect('sc: anon cannot read leads', () => as('anon', () => q('select * from breadmaker.list_scorecard_leads()')), (r, e) => !!e);
+await expect('sc: anon cannot read submissions', () => as('anon', () => q('select * from breadmaker.scorecard_submissions')), (r, e) => !!e || rows(r).length === 0);
+await expect('sc: learner gets 42501 from the overview', () => as('learner', () => q('select breadmaker.scorecard_overview() o')), (r, e) => !!e && e.code === '42501');
+await expect('sc: owner reads the overview with ordered bands', () => as('owner', () => q('select breadmaker.scorecard_overview() o')), (r) => { const o = rows(r)[0].o; return o.totals.attempts >= 8 && o.pass_rates.length === 20 && o.bands[0].band === 'not-started' && o.bands[o.bands.length - 1].band === 'operating'; });
+await expect('sc: pass rates are ordered, lowest first, by position on ties', () => as('owner', () => q('select * from breadmaker.scorecard_check_pass_rates()')), (r) => rows(r).length === 20 && rows(r)[0].pass_rate !== null);

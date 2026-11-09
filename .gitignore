@@ -1,0 +1,17 @@
+node_modules/
+build/
+dist/
+coverage/
+.DS_Store
+*.log
+.env*
+!.env.example
+
+# Tool output saved by other assistants
+.manus/
+
+# Local tooling and working files
+.claude/
+.work/
+New folder/
+docs/agent/workflows/

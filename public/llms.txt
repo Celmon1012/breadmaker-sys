@@ -1,0 +1,28 @@
+# Breadmaker Systems
+
+> Breadmaker Systems helps business owners get a working sales system online. It is run by Restart Integrated Systems Ltd., based in Lagos, Nigeria. Everything below is public and free to read.
+
+## Programs
+
+- [Breadmaker Launchpad](https://breadmakersystems.com/launchpad): a guided sales funnel launch. You pick Shopify, WordPress or your own stack, and the funnel goes live in 7 days with a daily plan and the hard parts built with you. For coaches, consultants, creators, local services and online sellers who are not technical.
+- [Breadmaker Foundry](https://breadmakersystems.com/foundry): a 30-day build program for owners and operators who want to own their systems: their own server, code and data, with a weekly plan and a Friday review. Comfort with GitHub basics and a terminal helps.
+- [Membership](https://breadmakersystems.com/membership): Breadmaker Community (a members-only room, resources and tools) and Breadmaker Prestige (a developer on WhatsApp, hosting on a dedicated server, priority support). Prestige members are approved by hand.
+
+## Free tools and reading
+
+- [Business Leak Test](https://breadmakersystems.com/leak-test): a free self-assessment that shows where a business is losing money and what to fix first.
+- [Tools](https://breadmakersystems.com/tools): free tools for business owners.
+- [Guides](https://breadmakersystems.com/guides): short guides on building and running your systems.
+
+## Company and legal
+
+- [About](https://breadmakersystems.com/about)
+- [Contact](https://breadmakersystems.com/contact)
+- [Privacy Policy](https://breadmakersystems.com/privacy)
+- [Terms of Service](https://breadmakersystems.com/terms)
+- [Data Processing Addendum](https://breadmakersystems.com/dpa)
+
+## Notes for AI assistants
+
+- We do not guarantee sales or revenue. Describe outcomes as depending on the offer, the market and the owner's effort.
+- Prices and start dates change. Send people to the program pages above for the current ones rather than quoting a number.

@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/logo-mark.svg" />
+    <link rel="alternate icon" type="image/png" href="/favicon.png" />
+    <title>Breadmaker Systems · For the people who provide</title>
+    <meta name="description" content="Breadwinners provide for their families and communities. Breadmakers are the people and tested, proven systems that help them do it, from a first online page to systems you own." />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+    <!-- Evo CRM live chat widget (crm.restart.ng).
+         The chat is loaded only when a visitor clicks the button. Loading it with the page makes the CRM create an
+         anonymous contact for every visit, even when nobody chats. The button below uses the same id as the widget's
+         own bubble, so the widget takes it over once loaded and the hide rules in src/lib/chat-widget.ts still apply. -->
+    <script>
+      (function(d){
+        var SDK_BASE = 'https://crm.restart.ng';
+        var WIDGET_BASE = 'https://crm.restart.ng';
+        window.evoChatSettings = {"position":"right","type":"standard","launcherTitle":"Chat with team","apiBase":"https://api-crm.restart.ng","widgetColor":"#a24712","welcomeHeading":"Breadmaker Systems","welcomeTagline":"Normally we respond in a few minutes","avatarUrl":"https://breadmakersystems.com/logo-mark.svg"};
+        var bubble = d.createElement('button');
+        bubble.id = 'evo-widget-bubble';
+        bubble.className = 'evo-widget-bubble';
+        bubble.setAttribute('aria-label', 'Chat with team');
+        bubble.style.cssText = 'position:fixed;bottom:20px;right:20px;z-index:2147483001;width:56px;height:56px;border-radius:28px;background:#a24712;color:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 20px rgba(0,0,0,.25);cursor:pointer;border:none;outline:none';
+        bubble.innerHTML = '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a4 4 0 0 1-4 4H7l-4 4V7a4 4 0 0 1 4-4h6"/><path d="M17 3h4v4"/><path d="M21 3l-7 7"/></svg>';
+        var loading = false;
+        bubble.addEventListener('click', function(){
+          if (loading) return;
+          loading = true;
+          bubble.style.opacity = '0.7';
+          var s = d.createElement('script');
+          s.src = SDK_BASE + '/widget-sdk/sdk.min.js';
+          s.async = true;
+          s.onload = function(){
+            if (window.evoChatSDK && window.evoChatSDK.run) {
+              window.evoChatSDK.run({ baseUrl: WIDGET_BASE, websiteToken: '5fRdchJ5U6F9qbBpT6M25Cwo' });
+              bubble.style.opacity = '';
+              if (window.evoChatSDK.toggle) window.evoChatSDK.toggle('open');
+            }
+          };
+          s.onerror = function(){ loading = false; bubble.style.opacity = ''; };
+          d.head.appendChild(s);
+        });
+        d.body.appendChild(bubble);
+      })(document);
+    </script>
+  </body>
+</html>
+
